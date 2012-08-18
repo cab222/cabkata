@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  category: MyString
+  date: 2012-08-18
+  title: MyString
+  post_id: 1
+
+two:
+  category: MyString
+  date: 2012-08-18
+  title: MyString
+  post_id: 1

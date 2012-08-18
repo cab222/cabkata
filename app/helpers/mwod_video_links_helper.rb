@@ -1,0 +1,2 @@
+module MwodVideoLinksHelper
+end

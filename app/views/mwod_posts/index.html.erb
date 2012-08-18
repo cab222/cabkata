@@ -1,0 +1,29 @@
+<h1>Listing mwod_posts</h1>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Date</th>
+    <th>Title</th>
+    <th>Post</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mwod_posts.each do |mwod_post| %>
+  <tr>
+    <td><%= mwod_post.category %></td>
+    <td><%= mwod_post.date %></td>
+    <td><%= mwod_post.title %></td>
+    <td><%= mwod_post.post_id %></td>
+    <td><%= link_to 'Show', mwod_post %></td>
+    <td><%= link_to 'Edit', edit_mwod_post_path(mwod_post) %></td>
+    <td><%= link_to 'Destroy', mwod_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Mwod post', new_mwod_post_path %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Link:</b>
+  <%= @mwod_video_link.link_id %>
+</p>
+
+<p>
+  <b>Mwod post:</b>
+  <%= @mwod_video_link.mwod_post_id %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @mwod_video_link.link %>
+</p>
+
+
+<%= link_to 'Edit', edit_mwod_video_link_path(@mwod_video_link) %> |
+<%= link_to 'Back', mwod_video_links_path %>
