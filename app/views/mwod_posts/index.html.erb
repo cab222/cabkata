@@ -2,10 +2,11 @@
 
 <table>
   <tr>
+  	<th>Id</th>
+    <th>Title</th>
     <th>Category</th>
     <th>Date</th>
-    <th>Title</th>
-    <th>Post</th>
+    <th>Links</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +14,13 @@
 
 <% @mwod_posts.each do |mwod_post| %>
   <tr>
+  	<td><%= mwod_post.id %></td>
+    <td><%= mwod_post.title %></td>
     <td><%= mwod_post.category %></td>
     <td><%= mwod_post.date %></td>
-    <td><%= mwod_post.title %></td>
-    <td><%= mwod_post.post_id %></td>
+    <td><%= mwod_post.mwod_video_link.all.collect do |link|
+    		link.link
+    	end %></td>
     <td><%= link_to 'Show', mwod_post %></td>
     <td><%= link_to 'Edit', edit_mwod_post_path(mwod_post) %></td>
     <td><%= link_to 'Destroy', mwod_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>

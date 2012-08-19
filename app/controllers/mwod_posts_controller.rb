@@ -3,11 +3,7 @@ class MwodPostsController < ApplicationController
   # GET /mwod_posts.json
   def index
     @mwod_posts = MwodPost.all
-    @mwod_posts.each do |post|
-      puts post.title
-      puts post.post_id
-    end
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @mwod_posts }

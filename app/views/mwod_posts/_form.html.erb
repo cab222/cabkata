@@ -12,20 +12,16 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
     <%= f.label :category %><br />
     <%= f.text_field :category %>
   </div>
   <div class="field">
     <%= f.label :date %><br />
     <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :post_id %><br />
-    <%= f.number_field :post_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

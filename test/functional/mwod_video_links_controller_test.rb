@@ -18,7 +18,7 @@ class MwodVideoLinksControllerTest < ActionController::TestCase
 
   test "should create mwod_video_link" do
     assert_difference('MwodVideoLink.count') do
-      post :create, mwod_video_link: { link: @mwod_video_link.link, link_id: @mwod_video_link.link_id, mwod_post_id: @mwod_video_link.mwod_post_id }
+      post :create, mwod_video_link: { link: @mwod_video_link.link, mwod_post_id: @mwod_video_link.mwod_post_id }
     end
 
     assert_redirected_to mwod_video_link_path(assigns(:mwod_video_link))
@@ -35,7 +35,7 @@ class MwodVideoLinksControllerTest < ActionController::TestCase
   end
 
   test "should update mwod_video_link" do
-    put :update, id: @mwod_video_link, mwod_video_link: { link: @mwod_video_link.link, link_id: @mwod_video_link.link_id, mwod_post_id: @mwod_video_link.mwod_post_id }
+    put :update, id: @mwod_video_link, mwod_video_link: { link: @mwod_video_link.link, mwod_post_id: @mwod_video_link.mwod_post_id }
     assert_redirected_to mwod_video_link_path(assigns(:mwod_video_link))
   end
 

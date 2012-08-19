@@ -18,7 +18,7 @@ class MwodPostsControllerTest < ActionController::TestCase
 
   test "should create mwod_post" do
     assert_difference('MwodPost.count') do
-      post :create, mwod_post: { category: @mwod_post.category, date: @mwod_post.date, post_id: @mwod_post.post_id, title: @mwod_post.title }
+      post :create, mwod_post: { category: @mwod_post.category, date: @mwod_post.date, title: @mwod_post.title }
     end
 
     assert_redirected_to mwod_post_path(assigns(:mwod_post))
@@ -35,7 +35,7 @@ class MwodPostsControllerTest < ActionController::TestCase
   end
 
   test "should update mwod_post" do
-    put :update, id: @mwod_post, mwod_post: { category: @mwod_post.category, date: @mwod_post.date, post_id: @mwod_post.post_id, title: @mwod_post.title }
+    put :update, id: @mwod_post, mwod_post: { category: @mwod_post.category, date: @mwod_post.date, title: @mwod_post.title }
     assert_redirected_to mwod_post_path(assigns(:mwod_post))
   end
 

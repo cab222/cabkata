@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120818155634) do
+ActiveRecord::Schema.define(:version => 20120819000740) do
 
   create_table "mwod_posts", :force => true do |t|
     t.string   "title"
@@ -19,16 +19,13 @@ ActiveRecord::Schema.define(:version => 20120818155634) do
     t.string   "category"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "post_id"
   end
 
   create_table "mwod_video_links", :force => true do |t|
-    t.integer  "link_id"
-    t.integer  "mwod_post_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "post_id"
     t.string   "link"
+    t.integer  "mwod_post_id"
   end
 
 end

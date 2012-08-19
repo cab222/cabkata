@@ -4,7 +4,6 @@
   <tr>
     <th>Link</th>
     <th>Mwod post</th>
-    <th>Link</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +11,8 @@
 
 <% @mwod_video_links.each do |mwod_video_link| %>
   <tr>
-    <td><%= mwod_video_link.link_id %></td>
-    <td><%= mwod_video_link.mwod_post_id %></td>
     <td><%= mwod_video_link.link %></td>
+    <td><%= mwod_video_link.mwod_post_id %></td>
     <td><%= link_to 'Show', mwod_video_link %></td>
     <td><%= link_to 'Edit', edit_mwod_video_link_path(mwod_video_link) %></td>
     <td><%= link_to 'Destroy', mwod_video_link, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -6,14 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 MwodPost.delete_all
+MwodVideoLink.delete_all
+
 entry = MwodPost.create(
   :category => :blog,
   :title => "The first mwod post",
-  :post_id => 1,
 )
 
-entry.mwod_video_link.create(
-  :link_id => 1, 
-  :mwod_post_id => 1, 
-  :link => "http://www.google.com"
-)
+entry.mwod_video_link << MwodVideoLink.create( :link => "http://www.google.com")
+entry.mwod_video_link << MwodVideoLink.create( :link => "http://www.youtube.com")
