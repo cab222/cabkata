@@ -20,9 +20,18 @@
     <%= f.text_field :category %>
   </div>
   <div class="field">
-    <%= f.label :date %><br />
+    <%= f.label :date %><br/>
     <%= f.date_select :date %>
   </div>
+
+  <% unless @mwod_post.mwod_video_link.empty? %>
+	<div class="field">
+    <%= f.label "Video Links"%><br/>
+    <%= f.fields_for :mwod_video_link do |builder| %>
+	  <%= builder.text_field :link %><br/>
+    <% end %>
+    </div>	
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -11,6 +11,7 @@ MwodVideoLink.delete_all
 entry = MwodPost.create(
   :category => :blog,
   :title => "The first mwod post",
+  :date => "2012-08-19"
 )
 
 entry.mwod_video_link << MwodVideoLink.create( :link => "http://www.google.com")
