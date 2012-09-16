@@ -2,6 +2,8 @@ Cabkata::Application.routes.draw do
   resources :mwod_video_links
 
   resources :mwod_posts
+  
+  root :to => 'mwod_posts#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
