@@ -24,14 +24,17 @@
     <%= f.date_select :date %>
   </div>
 
-  <% unless @mwod_post.mwod_video_link.empty? %>
 	<div class="field">
-    <%= f.label "Video Links"%><br/>
-    <%= f.fields_for :mwod_video_link do |builder| %>
-	  <%= builder.text_field :link %><br/>
+	<%= f.label "Video Links"%><br/>
+  
+  <% unless @mwod_post.mwod_video_link.empty? %>  
+  	<%= f.fields_for :mwod_video_link do |builder| %>
+	  	<%= render 'mwod_video_link_fields', :f => builder %>
     <% end %>
-    </div>	
   <% end %>
+
+	<%= link_to_add_links 'add link', f, :mwod_video_link %>
+  </div>		
   <div class="actions">
     <%= f.submit %>
   </div>

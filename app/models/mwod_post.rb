@@ -2,8 +2,8 @@ class MwodPost < ActiveRecord::Base
   validates :title, :category,  :presence => true
   validates :title, :uniqueness => true
   has_many :mwod_video_link
-  accepts_nested_attributes_for :mwod_video_link
-  attr_accessible :category, :date, :title, :mwod_video_link
+  accepts_nested_attributes_for :mwod_video_link, :reject_if => lambda{ |a| a[:link].blank? }, :allow_destroy => true
+  attr_accessible :category, :date, :title, :mwod_video_link_attributes
   before_destroy :ensure_not_referenced_by_mwod_post
   
   private
