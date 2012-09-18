@@ -18,7 +18,7 @@
     <td><%= mwod_post.title %></td>
     <td><%= mwod_post.category %></td>
     <td><%= mwod_post.date %></td>
-    <td><%= mwod_post.mwod_video_link.all.collect do |link|
+    <td><%= mwod_post.mwod_video_links.all.collect do |link|
     		link.link
     	end %></td>
     <td><%= link_to 'Show', mwod_post %></td>
