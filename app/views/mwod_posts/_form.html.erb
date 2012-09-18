@@ -31,15 +31,24 @@
 
 	<div class="field">
 	<%= f.label "Video Links"%><br/>
-  
   <% unless @mwod_post.mwod_video_links.empty? %>  
   	<%= f.fields_for :mwod_video_links do |builder| %>
 	  	<%= render 'mwod_video_link_fields', :f => builder %>
     <% end %>
   <% end %>
-
 	<%= link_to_add_fields 'add link', f, :mwod_video_links %>
-  </div>		
+  </div>
+
+	<div class="field">
+	<%= f.label "Tags"%><br/>
+  <% unless @mwod_post.mwod_tags.empty? %>  
+  	<%= f.fields_for :mwod_tags do |builder| %>
+	  	<%= render 'mwod_tag_fields', :f => builder %>
+    <% end %>
+  <% end %>
+	<%= link_to_add_fields 'add tag', f, :mwod_tags %>
+  </div>
+		
   <div class="actions">
     <%= f.submit %>
   </div>

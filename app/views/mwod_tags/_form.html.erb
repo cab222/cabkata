@@ -1,0 +1,25 @@
+<%= form_for(@mwod_tag) do |f| %>
+  <% if @mwod_tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mwod_tag.errors.count, "error") %> prohibited this mwod_tag from being saved:</h2>
+
+      <ul>
+      <% @mwod_tag.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mwod_post_id %><br />
+    <%= f.number_field :mwod_post_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tag %><br />
+    <%= f.text_field :tag %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,6 @@
 Cabkata::Application.routes.draw do
+  resources :mwod_tags
+
   resources :mwod_video_links
 
   resources :mwod_posts

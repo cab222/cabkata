@@ -29,5 +29,14 @@
 		</ol>
 </p>
 
+<p>
+	<b>Tags:</b>
+	<ol>
+  	<% for mwod_tag in @mwod_post.mwod_tags %>
+			<li><%= mwod_tag.tag %></li>
+			<% end %>
+		</ol>
+</p>
+
 <%= link_to 'Edit', edit_mwod_post_path(@mwod_post) %> |
 <%= link_to 'Back', mwod_posts_path %>

@@ -7,6 +7,7 @@
     <th>Category</th>
     <th>Date</th>
     <th>Links</th>
+    <th>Tags</th>
 		<th>Description</th>
     <th></th>
     <th></th>
@@ -19,9 +20,12 @@
     <td><%= mwod_post.title %></td>
     <td><%= mwod_post.category %></td>
     <td><%= mwod_post.date %></td>
-    <td><%= mwod_post.mwod_video_links.all.collect do |link|
-    		link.link
+    <td><%= mwod_post.mwod_video_links.all.collect do |link_model|
+    		link_model.link
     	end %></td>
+	    <td><%= mwod_post.mwod_tags.all.collect do |tag_model|
+	    		tag_model.tag
+	    	end %></td>
     <td><%= mwod_post.description %></td>
     <td><%= link_to 'Show', mwod_post %></td>
     <td><%= link_to 'Edit', edit_mwod_post_path(mwod_post) %></td>

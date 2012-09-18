@@ -8,12 +8,14 @@
 MwodPost.delete_all
 MwodVideoLink.delete_all
 
-entry = MwodPost.create(
+ankle1 = MwodPost.create(
   :category => :blog,
-  :title => "The first mwod post",
+  :title => "All about ankles 1",
   :date => "2012-08-19",
-  :description => "some description"
+  :description => "ankles are cool"
 )
 
-entry.mwod_video_links << MwodVideoLink.create( :link => "http://www.google.com")
-entry.mwod_video_links << MwodVideoLink.create( :link => "http://www.youtube.com")
+ankle1.mwod_video_links << MwodVideoLink.create( :link => "http://www.google.com")
+ankle1.mwod_video_links << MwodVideoLink.create( :link => "http://www.youtube.com")
+ankle1.mwod_tags << MwodTag.create( :tag => "ankle")
+ankle1.mwod_tags << MwodTag.create( :tag => "calf")

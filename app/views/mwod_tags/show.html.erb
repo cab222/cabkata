@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Mwod post:</b>
+  <%= @mwod_tag.mwod_post_id %>
+</p>
+
+<p>
+  <b>Tag:</b>
+  <%= @mwod_tag.tag %>
+</p>
+
+
+<%= link_to 'Edit', edit_mwod_tag_path(@mwod_tag) %> |
+<%= link_to 'Back', mwod_tags_path %>
