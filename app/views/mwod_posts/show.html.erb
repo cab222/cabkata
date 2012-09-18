@@ -15,12 +15,19 @@
   <%= @mwod_post.date %>
 </p>
 
-<ol>
-  <% for mwod_link in @mwod_post.mwod_video_links %>
-		<li><%= mwod_link.link %></li>
-	<% end %>
-</ol>
+<p>
+  <b>Description:</b>
+  <%= @mwod_post.description %>
+</p>
 
+<p>
+	<b>Links:</b>
+	<ol>
+  	<% for mwod_link in @mwod_post.mwod_video_links %>
+			<li><%= mwod_link.link %></li>
+			<% end %>
+		</ol>
+</p>
 
 <%= link_to 'Edit', edit_mwod_post_path(@mwod_post) %> |
 <%= link_to 'Back', mwod_posts_path %>
