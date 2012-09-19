@@ -8,12 +8,9 @@ class MwodPost < ActiveRecord::Base
   attr_accessible :category, :date, :title, :mwod_video_links_attributes, :description, :mwod_tags_attributes
   before_destroy :ensure_not_referenced_by_mwod_post
   
-  
-  #TEST THIS
-  #ADD CHECK FOR TAGS
   private
   def ensure_not_referenced_by_mwod_post
-    if mwod_video_links.empty? || mwod_tags.empty?
+    if mwod_video_links.empty? && mwod_tags.empty?
       return true
     else
       errors.add(:base, 'has video links or tags, delete first')

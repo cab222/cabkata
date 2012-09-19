@@ -11,8 +11,13 @@ class MwodPostTest < ActiveSupport::TestCase
     post.title = "title"
     post.save
         
-    post1 = MwodPost.new;
-    post1.title = "title";
-    assert !post1.save
+    post1 = MwodPost.new
+    post1.title = "title"
+    assert !post1.save, "duplicate title"
+    
+    tag = FactoryGirl.create(:mwod_tag)
+    postWithTag = tag.mwod_post
+    assert !postWithTag.destroy, "unable to destroy a post with tags"
+    assert_equal 'has video links or tags, delete first', postWithTag.errors[:base].join('; ')
   end
 end

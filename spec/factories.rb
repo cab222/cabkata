@@ -7,7 +7,12 @@ FactoryGirl.define do
   end
   
   factory :mwod_tag do
-    tag "ankle"
-    mwod_post_id 
+    tag "ankle" 
+    mwod_post
   end
+  
+  factory :mwod_video_link do
+    link "http://www.test.com" 
+  end
+  
 end
