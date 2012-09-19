@@ -13,10 +13,10 @@ class MwodPost < ActiveRecord::Base
   #ADD CHECK FOR TAGS
   private
   def ensure_not_referenced_by_mwod_post
-    if mwod_video_links.empty? 
+    if mwod_video_links.empty? || mwod_tags.empty?
       return true
     else
-      errors.add(:base, 'has mwod video links, delete first')
+      errors.add(:base, 'has video links or tags, delete first')
       return false
     end
   end
