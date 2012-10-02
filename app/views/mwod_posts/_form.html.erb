@@ -1,7 +1,7 @@
 <%= form_for(@mwod_post) do |f| %>
   <% if @mwod_post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@mwod_post.errors.count, "error") %> prohibited this mwod_post from being saved:</h2>
+      <h2><%= pluralize(@mwod_post.errors.count, "error") %> prohibited this MWOD Post from being saved:</h2>
 
       <ul>
       <% @mwod_post.errors.full_messages.each do |msg| %>

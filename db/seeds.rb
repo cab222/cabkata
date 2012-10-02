@@ -8,6 +8,7 @@
 MwodPost.delete_all
 MwodVideoLink.delete_all
 
+date = Date.new;
 ankle1 = MwodPost.create(
   :category => :blog,
   :title => "All about ankles 1",

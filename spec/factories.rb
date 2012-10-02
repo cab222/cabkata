@@ -13,6 +13,7 @@ FactoryGirl.define do
   
   factory :mwod_video_link do
     link "http://www.test.com" 
+    mwod_post
   end
   
 end
