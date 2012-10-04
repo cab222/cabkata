@@ -1,42 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = MwodPost -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Title:</b>
-  <%= @mwod_post.title %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @mwod_post.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:date) %>:</strong></dt>
+  <dd><%= @mwod_post.date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
+  <dd><%= @mwod_post.category %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @mwod_post.description %></dd>
+</dl>
 
-<p>
-  <b>Category:</b>
-  <%= @mwod_post.category %>
-</p>
-
-<p>
-  <b>Date:</b>
-  <%= @mwod_post.date %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @mwod_post.description %>
-</p>
-
-<p>
-	<b>Links:</b>
-	<ol>
-  	<% for mwod_link in @mwod_post.mwod_video_links %>
-			<li><%= mwod_link.link %></li>
-			<% end %>
-		</ol>
-</p>
-
-<p>
-	<b>Tags:</b>
-	<ol>
-  	<% for mwod_tag in @mwod_post.mwod_tags %>
-			<li><%= mwod_tag.tag %></li>
-			<% end %>
-		</ol>
-</p>
-
-<%= link_to 'Edit', edit_mwod_post_path(@mwod_post) %> |
-<%= link_to 'Back', mwod_posts_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              mwod_posts_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_mwod_post_path(@mwod_post), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              mwod_post_path(@mwod_post),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

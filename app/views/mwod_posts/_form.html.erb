@@ -1,55 +1,44 @@
-<%= form_for(@mwod_post) do |f| %>
-  <% if @mwod_post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@mwod_post.errors.count, "error") %> prohibited this MWOD Post from being saved:</h2>
-
-      <ul>
-      <% @mwod_post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+<%= simple_form_for @mwod_post, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+  	<%= f.input :title, :class => 'text_field' %>
   </div>
-  <div class="field">
-    <%= f.label :category %><br />
-    <%= f.text_field :category %>
+  <div class="control-group">
+  	<%= f.input :date, :class => 'date_select' %>
   </div>
-  <div class="field">
-    <%= f.label :date %><br/>
-    <%= f.date_select :date %>
+  <div class="control-group">
+  	<%= f.input :category, :class => 'text_field' %>
+  </div>
+  <div class="control-group">
+  	<%= f.input :description, :class => 'text_field' %>
   </div>
 
-  <div class="field">
-    <%= f.label :description %><br/>
-    <%= f.text_field :description %>
+	<div class="control-group">
+		<%= f.label "Video Links", :class => 'control-label' %><br/>
+		<div class="controls">
+  		<% unless @mwod_post.mwod_video_links.empty? %>  
+  			<%= f.fields_for :mwod_video_links do |builder| %>
+	  			<%= render 'mwod_video_link_fields', :f => builder %>
+    		<% end %>
+  		<% end %>
+			<%= link_to_add_fields 'add link', f, :mwod_video_links %>
+		</div>
   </div>
 
-	<div class="field">
-	<%= f.label "Video Links"%><br/>
-  <% unless @mwod_post.mwod_video_links.empty? %>  
-  	<%= f.fields_for :mwod_video_links do |builder| %>
-	  	<%= render 'mwod_video_link_fields', :f => builder %>
-    <% end %>
-  <% end %>
-	<%= link_to_add_fields 'add link', f, :mwod_video_links %>
+	<div class="control-group">
+		<%= f.label "Tags", :class => 'control-label' %><br/>
+		<div class="controls">
+  		<% unless @mwod_post.mwod_tags.empty? %>  
+  			<%= f.fields_for :mwod_tags do |builder| %>
+	  			<%= render 'mwod_tag_fields', :f => builder %>
+    		<% end %>
+  		<% end %>
+			<%= link_to_add_fields 'add tag', f, :mwod_tags %>
+		</div>
   </div>
 
-	<div class="field">
-	<%= f.label "Tags"%><br/>
-  <% unless @mwod_post.mwod_tags.empty? %>  
-  	<%= f.fields_for :mwod_tags do |builder| %>
-	  	<%= render 'mwod_tag_fields', :f => builder %>
-    <% end %>
-  <% end %>
-	<%= link_to_add_fields 'add tag', f, :mwod_tags %>
-  </div>
-		
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                mwod_posts_path, :class => 'btn' %>
   </div>
 <% end %>
