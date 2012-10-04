@@ -7,16 +7,23 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 MwodPost.delete_all
 MwodVideoLink.delete_all
+MwodTag.delete_all
 
-date = Date.new;
-ankle1 = MwodPost.create(
-  :category => :blog,
-  :title => "All about ankles 1",
-  :date => "2012-08-19",
-  :description => "ankles are cool"
-)
+#
+# If the web crawler & parser are down.
+# 
+# date = Date.new;
+# ankle1 = MwodPost.create(
+#   :category => :blog,
+#   :title => "All about ankles 1",
+#   :date => "2012-08-19",
+#   :description => "ankles are cool"
+# )
+# 
+# ankle1.mwod_video_links << MwodVideoLink.create( :link => "http://www.google.com")
+# ankle1.mwod_video_links << MwodVideoLink.create( :link => "http://www.youtube.com")
+# ankle1.mwod_tags << MwodTag.create( :tag => "ankle")
+# ankle1.mwod_tags << MwodTag.create( :tag => "calf")
 
-ankle1.mwod_video_links << MwodVideoLink.create( :link => "http://www.google.com")
-ankle1.mwod_video_links << MwodVideoLink.create( :link => "http://www.youtube.com")
-ankle1.mwod_tags << MwodTag.create( :tag => "ankle")
-ankle1.mwod_tags << MwodTag.create( :tag => "calf")
+require File.dirname(__FILE__) + '/../app/helpers/mwod_web_crawler'
+crawl_scrape_persist
