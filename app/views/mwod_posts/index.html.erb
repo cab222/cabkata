@@ -22,7 +22,7 @@
         <td><%= mwod_post.date %></td>
         <td><%= mwod_post.category %></td>
         <td><%= mwod_post.description %></td>
-        <td><%=l mwod_post.created_at %></td>
+        <td><%= mwod_post.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_mwod_post_path(mwod_post), :class => 'btn btn-mini' %>
