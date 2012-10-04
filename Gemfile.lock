@@ -186,7 +186,6 @@ DEPENDENCIES
   launchy
   pg
   rails (= 3.2.8)
-  rb-fsevent
   rspec-rails
   sass-rails (~> 3.2.3)
   simple_form
