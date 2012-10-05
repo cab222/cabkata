@@ -1,4 +1,6 @@
 Cabkata::Application.routes.draw do
+  devise_for :users
+
   resources :mwod_tags
 
   resources :mwod_video_links
