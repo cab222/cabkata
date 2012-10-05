@@ -192,6 +192,7 @@ DEPENDENCIES
   jquery-datatables-rails!
   jquery-rails
   launchy
+  nokogiri
   pg
   rails (= 3.2.8)
   rspec-rails
