@@ -45,8 +45,7 @@ def process_blog_entry(blog_entry)
   processed_post_hash
 end
 
-def crawl_scrape_persist
-  url = "http://www.mobilitywod.com";
+def scrape_page(url)
   doc = Nokogiri::HTML(open(url))
   unless doc.nil?
     posts = doc.css('[class="post_entry blog"]');
@@ -56,7 +55,29 @@ def crawl_scrape_persist
       p mwod_post
       mwod_post.save if mwod_post.valid?
     end
+    
+    links = doc.xpath('//a[@href]').collect do |link|
+      link["href"]
+    end  
+    links = links.grep(/http:\/\/www.mobilitywod.com\/page*/)
   end  
+  links  
 end
 
-crawl_scrape_persist
+def crawl_scrape_persist
+  link_processed = Hash.new
+  queue = Queue.new
+  queue << "http://www.mobilitywod.com"
+  
+  while !queue.empty?
+    url = queue.pop
+    p "processing: " + url
+    new_links = scrape_page(url)
+    link_processed[url] = true
+    new_links.each do |link|
+      p "potential link: " + link
+      queue << link if !link_processed.has_key? link
+    end
+    p "queue size is: " + queue.size.to_s
+  end
+end

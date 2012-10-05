@@ -14,6 +14,26 @@
   <dd><%= @mwod_post.description %></dd>
 </dl>
 
+<div>
+	<div class="span5">
+			<strong>Tags:</strong>
+			<ul>
+				<% @mwod_post.mwod_tags.each do |mwod_tag| %>
+		  		<li><%= mwod_tag.tag %></li>		
+					<%	end %>
+			</ul>
+		</div>
+
+	<div class="span5">
+		  <strong>Videos:</strong>
+			<ul>
+				<% @mwod_post.mwod_video_links.each do |link| %>
+		  		<li><%= link_to link.link %></li>		
+				<%	end %>
+			</ul>
+		</div>
+	</div>
+</div>
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               mwod_posts_path, :class => 'btn'  %>
