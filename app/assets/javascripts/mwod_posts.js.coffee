@@ -13,3 +13,6 @@ jQuery ->
 		regexp = new RegExp($(this).data('id'), 'g')
 		$(this).before($(this).data('fields').replace(regexp, time))
 		event.preventDefault()
+		
+	$('#mwod_posts').dataTable()	
+		sPaginationType: "full_numbers"	
