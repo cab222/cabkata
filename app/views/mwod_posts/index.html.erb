@@ -1,15 +1,21 @@
 <%- model_class = MwodPost -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1><%=t '.title', :default => 'MWOD Posts' %></h1>
 </div>
+<div class="pull right">
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_mwod_post_path,
+            :class => 'btn pull-right' %></br>
+</div></br>
+
 <table class="table table-striped" id="mwod_posts">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:date) %></th>
-      <th><%= model_class.human_attribute_name(:category) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:tags) %></th>
+      <th><%= model_class.human_attribute_name(:videos) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -19,8 +25,14 @@
         <td><%= link_to mwod_post.id, mwod_post_path(mwod_post) %></td>
         <td><%= mwod_post.title %></td>
         <td><%= mwod_post.date %></td>
-        <td><%= mwod_post.category %></td>
-        <td><%= mwod_post.description %></td>
+			  <td>
+			  	<%= mwod_post.mwod_tags.collect {|tag| tag.tag}.join(', ').to_s %>
+  		  </td>
+        <td>
+						<%i = 0; mwod_post.mwod_video_links.each do |link| i = i + 1 %>
+							<%= link_to "Video " + i.to_s, link.link, :target => '_blank' %></br>
+						<% end %>
+	      </td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_mwod_post_path(mwod_post), :class => 'btn btn-mini' %>
@@ -35,6 +47,4 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_mwod_post_path,
-            :class => 'btn btn-primary' %>
+
