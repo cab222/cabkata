@@ -23,7 +23,12 @@
         <li><%= mail_to "cabkata@gmail.com", "Contact Us" %></li>
 				<li class="divider-vertical"></li>
 	    	<% if user_signed_in? %>
-					<li><p class="navbar-text">Logged in as <%= current_user.email %></p></li>
+					<li>
+						<p class="navbar-text">Logged in as <%= current_user.email %>
+	
+						</p>		
+					</li>
+					
 					<li class="divider-vertical"></li>
 		    	<li><%= link_to 'Edit profile', edit_user_registration_path %></li>
 					<li class="divider-vertical"></li>
@@ -32,6 +37,12 @@
 		      <li><%= link_to "Sign up", new_user_registration_path %></li>
 					<li class="divider-vertical"></li>
 		      <li><%= link_to "Login", new_user_session_path %></li>
+				 
+				  <li>
+						<a href="/auth/twitter" class="auth_provider"> 
+								<%= image_tag "twitter_32.png", :size => "32x32", :alt => "Twitter" %>Twitter
+						</a>
+					</li>	
 		    <% end %>		
 	    </ul>
 	  </div>

@@ -1,6 +1,12 @@
 Cabkata::Application.routes.draw do
   match '/auth/:provider/callback' => 'authentications#create'
-  devise_for :users
+ 
+  
+  devise_for :users, :controllers => { :registrations => 'registrations' }    
+  devise_scope :user do
+    match 'users' => 'registrations#index', :as => :users
+  end
+
   resources :projects
   resources :tasks
   resources :authentications
