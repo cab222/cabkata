@@ -5,19 +5,41 @@ def remove_lastchar( input )
   input[0, input.length-1]
 end
 
+def logger
+  if @logger == nil
+    @logger = Logger.new(STDOUT)
+    @logger.level = Logger::DEBUG
+  end
+  @logger
+end
+
 def process_blog_entry(blog_entry)
   blog_entry_header = blog_entry.css('[class="post-meta-holder"]')
-  blog_title = blog_entry_header.first.content.strip;
+  blog_entry_header_first = blog_entry_header.first
+  blog_entry_header_first_content = blog_entry_header_first.content
+  blog_title = blog_entry_header_first_content.strip;
+  logger.debug {"Blog title: #{blog_title}"}
+  
   blog_entry_tags = blog_entry.css('[class="post_meta_top"]')
-  blog_tag_info =  blog_entry_tags.first.content.strip; 
+  blog_entry_tags_first =  blog_entry_tags.first
+  blog_entry_tags_first_content = blog_entry_tags_first.content
+  blog_tag_info = blog_entry_tags_first_content.strip;   
   blog_tag_info_parts = blog_tag_info.gsub(/\342\200\223/u,"-").split("-");
   blog_tag_info_parts = blog_tag_info.split("\n");
+  
+  logger.debug {"Blog Tag Info Parts: #{blog_tag_info_parts.size}"}
 
-  date = remove_lastchar(blog_tag_info_parts[0].strip).strip
-  category = remove_lastchar(blog_tag_info_parts[1].split(":")[1].strip).strip
+  if blog_tag_info_parts.size == 4
+    date = remove_lastchar(blog_tag_info_parts[0].strip).strip
+    category = remove_lastchar(blog_tag_info_parts[1].split(":")[1].strip).strip
 
-  tags = remove_lastchar(blog_tag_info_parts[2]).strip.split(":")[1].strip.split(',').collect do |item|
-    {:tag => item.strip}
+    tags = remove_lastchar(blog_tag_info_parts[2]).strip.split(":")[1].strip.split(',').collect do |item|
+      {:tag => item.strip}
+    end
+  else
+    date = nil
+    category = "Blog"
+    tags = []  
   end
 
   blog_entry_meat = blog_entry.css('[class="info_holder"]')
@@ -52,7 +74,7 @@ def scrape_page(url)
     posts.each do |blog_entry|
       processed_post_hash = process_blog_entry blog_entry
       mwod_post = MwodPost.new processed_post_hash
-      p mwod_post
+      logger.debug mwod_post
       mwod_post.save if mwod_post.valid?
     end
     
@@ -65,19 +87,23 @@ def scrape_page(url)
 end
 
 def crawl_scrape_persist
-  link_processed = Hash.new
+  links_processed = Hash.new
+  links_added = Hash.new
   queue = Queue.new
   queue << "http://www.mobilitywod.com"
   
   while !queue.empty?
     url = queue.pop
-    p "processing: " + url
+    logger.debug "processing: " + url
     new_links = scrape_page(url)
-    link_processed[url] = true
+    links_processed[url] = true
     new_links.each do |link|
-      p "potential link: " + link
-      queue << link if !link_processed.has_key? link
+      if !links_added.has_key? link
+        logger.debug "adding link: " + link
+        links_added[ link ] = true
+        queue << link 
+      end  
     end
-    p "queue size is: " + queue.size.to_s
+    logger.info "queue size is: " + queue.size.to_s
   end
 end

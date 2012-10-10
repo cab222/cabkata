@@ -1,8 +1,10 @@
 #rake clean=true crawl=true local_create=true
+logger = Logger.new(STDOUT)
+logger.level = Logger::INFO
 
 perform_clean = ENV['clean'];
 if perform_clean
-  puts "Performing clean"
+  logger.info "Performing clean"
   MwodPost.delete_all
   MwodVideoLink.delete_all
   MwodTag.delete_all
@@ -27,7 +29,7 @@ end
 
 crawl = ENV['crawl']
 if crawl
-  puts "Creating posts by crawling the web..."
+  logger.info "Creating posts by crawling the web..."
   require File.dirname(__FILE__) + '/../app/helpers/mwod_web_crawler'
   crawl_scrape_persist
 end  
