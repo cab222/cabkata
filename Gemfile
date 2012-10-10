@@ -31,11 +31,7 @@ group :test do
   #gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
 end
 
-group :development do
-  gem 'thin'
-end
-
-
+gem 'thin'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'nokogiri'
