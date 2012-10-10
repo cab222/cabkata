@@ -8,7 +8,5 @@ class Permission < Struct.new(:user)
     value = true if controller == "devise/sessions" && action.in?(%w[destroy new create])    
     Rails.logger.debug {"Is permissioned to #{controller}##{action}? #{value}"}
     return value
-    
-
   end
 end

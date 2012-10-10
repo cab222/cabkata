@@ -1,29 +1,33 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-MwodPost.delete_all
-MwodVideoLink.delete_all
-MwodTag.delete_all
+#rake clean=true crawl=true local_create=true
 
-#
-# If the web crawler & parser are down.
-# 
-# date = Date.new;
-# ankle1 = MwodPost.create(
-#   :category => :blog,
-#   :title => "All about ankles 1",
-#   :date => "2012-08-19",
-#   :description => "ankles are cool"
-# )
-# 
-# ankle1.mwod_video_links << MwodVideoLink.create( :link => "http://www.google.com")
-# ankle1.mwod_video_links << MwodVideoLink.create( :link => "http://www.youtube.com")
-# ankle1.mwod_tags << MwodTag.create( :tag => "ankle")
-# ankle1.mwod_tags << MwodTag.create( :tag => "calf")
+perform_clean = ENV['clean'];
+if perform_clean
+  puts "Performing clean"
+  MwodPost.delete_all
+  MwodVideoLink.delete_all
+  MwodTag.delete_all
+  User.delete_all
+end
 
-require File.dirname(__FILE__) + '/../app/helpers/mwod_web_crawler'
-crawl_scrape_persist
+local_create = ENV['local_create']
+if local_create
+  date = Date.new;
+  ankle1 = MwodPost.create(
+    :category => :blog,
+    :title => "All about ankles 1",
+    :date => "2012-08-19",
+    :description => "ankles are cool"
+  )
+  
+  ankle1.mwod_video_links << MwodVideoLink.create( :link => "http://www.google.com")
+  ankle1.mwod_video_links << MwodVideoLink.create( :link => "http://www.youtube.com")
+  ankle1.mwod_tags << MwodTag.create( :tag => "ankle")
+  ankle1.mwod_tags << MwodTag.create( :tag => "calf")
+end
+
+crawl = ENV['crawl']
+if crawl
+  puts "Creating posts by crawling the web..."
+  require File.dirname(__FILE__) + '/../app/helpers/mwod_web_crawler'
+  crawl_scrape_persist
+end  
