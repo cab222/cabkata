@@ -9,6 +9,7 @@ if perform_clean
   MwodVideoLink.delete_all
   MwodTag.delete_all
   User.delete_all
+  Authentication.delete_all
 end
 
 local_create = ENV['local_create']
