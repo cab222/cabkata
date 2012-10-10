@@ -6,6 +6,7 @@ class Permission < Struct.new(:user)
     value = true if controller == "mwod_posts" && action.in?(%w[index show])
     value = true if controller == "authentications" && action.in?(%w[create])
     value = true if controller == "devise/sessions" && action.in?(%w[destroy new create])    
+    value = true if controller == "registrations" && action.in?(%w[destroy new create edit])        
     Rails.logger.debug {"Is permissioned to #{controller}##{action}? #{value}"}
     return value
   end

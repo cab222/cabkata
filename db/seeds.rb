@@ -1,4 +1,4 @@
-#rake clean=true crawl=true local_create=true
+#rake clean=true crawl=true local_create=true update_admin=true
 logger = Logger.new(STDOUT)
 logger.level = Logger::INFO
 
@@ -34,3 +34,11 @@ if crawl
   require File.dirname(__FILE__) + '/../app/helpers/mwod_web_crawler'
   crawl_scrape_persist
 end  
+
+admin = ENV['update_admin']
+if admin
+  user = User.where("email = 'carlo.barbara@gmail.com'").first
+  logger.info "#{user.email}"
+  user.administrator = true
+  user.save!  
+end
