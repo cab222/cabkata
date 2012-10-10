@@ -21,7 +21,7 @@
 	        <td><%= authentication.user_id %></td>
 	        <td><%= authentication.provider %></td>
 	        <td><%= authentication.uid %></td>
-	        <td><%=l authentication.created_at %></td>
+	        <td><%= authentication.created_at %></td>
 	        <td>
 	          <%= link_to t('.edit', :default => t("helpers.links.edit")),
 	                      edit_authentication_path(authentication), :class => 'btn btn-mini' %>
