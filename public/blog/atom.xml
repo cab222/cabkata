@@ -4,12 +4,38 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2012-11-12T23:33:34-05:00</updated>
+ <updated>2012-11-13T17:39:48-05:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
  </author>
 
+ 
+ <entry>
+   <title>Maven Dependencies</title>
+   <link href="YOUR_URL/maven-dependencies.html"/>
+   <updated>2012-11-13T00:00:00-05:00</updated>
+   <id>BLOG_URL/maven-dependencies</id>
+   <content type="html">&lt;p&gt;I've been using Maven and never truely understood how dependencies were resolved. Today I took the time to figure it out, so I'm going to document it here for my future reference. First off, pom files are declarative. That means the pom says I reference this jar, but not how to go about referencing the jar (though you provide some hints, i.e. remote repositories).&lt;/p&gt;
+
+&lt;p&gt;Maven uses a waterfall methodology for looking up dependencies defined in the pom file. It looks in these places, in this order:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;local repository (~/.m2/repository)&lt;/li&gt;
+&lt;li&gt;http://repo.maven.apache.org/maven2/&lt;/li&gt;
+&lt;li&gt;Remote Repositories listed in your pom&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;There is a bit more magic, if you depend on a snaphot. A snapshot means that version is actively in development and hasn't been released. In that case, maven will check for a new version remotely even if it already exists in the local repo. You can override this behaviour with the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;snapshots&amp;gt;
+    &amp;lt;enabled&amp;gt;true&amp;lt;/enabled&amp;gt;
+    &amp;lt;updatepolicy&amp;gt;{always,daily,interval:XXX,never}&amp;lt;/updatepolicy&amp;gt;
+&amp;lt;/snapshots&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Rich Armstrong talks about support, culture, and management philosphy</title>

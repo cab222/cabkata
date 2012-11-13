@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>Hello World - About me and this site</title>
+   <title>Maven Dependencies</title>
    <meta name="author" content="Carlo Barbara" />
 
    <!-- syntax highlighting CSS -->
@@ -29,32 +29,24 @@ var WRInitTime=(new Date()).getTime();
   </div>
   
   <div id="post">
-<h1>About Me</h1>
+<p>I've been using Maven and never truely understood how dependencies were resolved. Today I took the time to figure it out, so I'm going to document it here for my future reference. First off, pom files are declarative. That means the pom says I reference this jar, but not how to go about referencing the jar (though you provide some hints, i.e. remote repositories).</p>
 
-<p>I double concentrated in computer science &amp; math at Columbia College in NYC. I concentrated in Math and Computer Science. A concentration is more like a minor than a major. With that said, most of the valuable stuff comes from work and few a key courses like Data Structures. Self education was key, and the best investment I ever made was in the CLRS textbook.</p>
-
-<h1>About the Site</h1>
-
-<p>Most of my experience is in finance, specifically building trading systems. This means I have worked on exchange execution, desktop UIs, P&amp;L tools, logistics tools, and plenty of other custom technologies to support a trading business. This means most of my experiences is in proprietary technologies, Java, and C#.</p>
-
-<p>I built this site to develop experience with web applications, but more importantly to get familiar with the tech stack that the NYC startup scene is using. I started with making a better interface to www.mobilitywod.com videos. Then I integrated a blog so that I can have a medium to talk about my experiences as an Engineer in NYC.</p>
-
-<p>I chose to use Ruby on Rails, which has made things very easy. There is a lot of information and strong community around Rails. In addition, <em>Ryan Bates</em> and <em>Rails Casts Pro</em> makes things even easier. Here are some of the technologies leveraged by the site:</p>
+<p>Maven uses a waterfall methodology for looking up dependencies defined in the pom file. It looks in these places, in this order:</p>
 
 <ul>
-<li>omniauth + twitter</li>
-<li>devise</li>
-<li>datatables</li>
-<li>capybara</li>
-<li>twitter bootstrap</li>
-<li>postgres</li>
-<li>factory girl</li>
-<li>nokogiri</li>
-<li>nested forms</li>
-<li>jeykll</li>
-<li>Nokogiri</li>
+<li>local repository (~/.m2/repository)</li>
+<li>http://repo.maven.apache.org/maven2/</li>
+<li>Remote Repositories listed in your pom</li>
 </ul>
 
+
+<p>There is a bit more magic, if you depend on a snaphot. A snapshot means that version is actively in development and hasn't been released. In that case, maven will check for a new version remotely even if it already exists in the local repo. You can override this behaviour with the following:</p>
+
+<pre><code>&lt;snapshots&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+    &lt;updatepolicy&gt;{always,daily,interval:XXX,never}&lt;/updatepolicy&gt;
+&lt;/snapshots&gt;
+</code></pre>
 
 </div>
 
@@ -62,11 +54,11 @@ var WRInitTime=(new Date()).getTime();
   <h2>Related Posts</h2>
   <ul class="posts">
     
-      <li><span>13 Nov 2012</span> &raquo; <a href="/blog/maven-dependencies.html">Maven Dependencies</a></li>
-    
       <li><span>12 Nov 2012</span> &raquo; <a href="/blog/richarmstrongtalks.html">Rich Armstrong talks about support, culture, and management philosphy</a></li>
     
       <li><span>29 Oct 2012</span> &raquo; <a href="/blog/sandy-storm-shutin.html">Sandy Storm Shutin -- My blog is born</a></li>
+    
+      <li><span>25 Apr 2012</span> &raquo; <a href="/blog/a-test-post.html">Hello World - About me and this site</a></li>
     
   </ul>
 </div>
