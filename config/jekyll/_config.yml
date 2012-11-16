@@ -1,3 +1,6 @@
+name: CAB's kata
+description: musings of a man on a journey
+url: http://www.cabkata.com/blog
 markdown: rdiscount
 permalink: /:title.html
 destination: ../../public/blog
