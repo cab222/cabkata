@@ -4,12 +4,55 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2012-11-15T21:34:08-05:00</updated>
+ <updated>2012-11-21T09:49:12-05:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
  </author>
 
+ 
+ <entry>
+   <title>Taking The Leap into Fashion...Renting the Runway</title>
+   <link href="YOUR_URL/takingtheleap.html"/>
+   <updated>2012-11-16T00:00:00-05:00</updated>
+   <id>BLOG_URL/takingtheleap</id>
+   <content type="html">&lt;p&gt;My last 10 years were spent developing trading and risk software at a top investment bank, but these days I work in fashion. I’m just finishing week two at Rent The Runway. Obviously going from Wall Street to the runway has been a big change, but so far it’s been great and I’m glad I made this decision. Moving to a startup wasn’t a choice I made lightly, and I think my experience is worth sharing as it may resonate with others.&lt;/p&gt;
+
+&lt;p&gt;I was a Vice President (a senior title, but not an executive) at a great firm. I don’t care if it’s in vogue to hate on Wall Street, my employer treated me well and I respect them for that. They offered great perks like excellent training and a top notch wellness program. I had high wealth opportunities with limited risk, and I got to work with very bright people. With that said, everything wasn’t perfect, and I wasn’t 100% content with my job, but life is always about trade-offs. Everything I listed came at the cost of “Big Company Problems”.&lt;/p&gt;
+
+&lt;p&gt;When you work at big company, even at tech firms like Google, you need lots of middle management to support a large organization. That many layers leads to a few problems:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Way too many meetings. You literally have meetings to prepare for meetings. The same goes for status updates.&lt;/li&gt;
+&lt;li&gt;Politics. The successful folks are jockeying to take over turf or protect their own. It may be subtle or indirect, but it still sours culture. It also leads to a lot of micro management.&lt;/li&gt;
+&lt;li&gt;More than likely, you’re working with lots of proprietary frameworks or having to spend too much time managing up. The former makes you less marketable, the latter is just meta work, not value add!&lt;/li&gt;
+&lt;li&gt;Greenfield opportunities are rare&lt;/li&gt;
+&lt;li&gt;More Floaters. These are people who just skate by without taking ownership or adding significant value&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;That list may be short, but honestly it’s enough to weigh on you like an anchor. Since I left, I feel light a feather. I wake up excited to come work. Here are few reasons why:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Our Director of Engineering sets the right tone&lt;/li&gt;
+&lt;li&gt;Our Tech team is nails. We are hire sharp Engineers, who care about software and taking pride in their work&lt;/li&gt;
+&lt;li&gt;The focus is on working smart, not hard&lt;/li&gt;
+&lt;li&gt;Amazing culture. Everyone is helpful, and there are no prima donnas!&lt;/li&gt;
+&lt;li&gt;We have the critical scalability and uptime requirements of all eComerce sites, the challenges of reservation matching like ZipCar, and the logistical problems of Netflix but with much more valuable inventory&lt;/li&gt;
+&lt;li&gt;Plenty of greenfield opportunities. We are disruptors!&lt;/li&gt;
+&lt;li&gt;The interview was technical, not fuzzy. If you’re interview somewhere and the interview is not as technical as you are, turn around and run!&lt;/li&gt;
+&lt;li&gt;We have meetings when they are appropriate, and there is plenty of time code&lt;/li&gt;
+&lt;li&gt;Politics are nonexistent&lt;/li&gt;
+&lt;li&gt;Our company is sub 200 employees, 100 are in the warehouse, and 20+ are in engineering. This means my impact is tremendous,  I get to be a steward of the culture&lt;/li&gt;
+&lt;li&gt;I understand our company’s business model. It’s not just “let’s build something cool and figure out how we monetize it”&lt;/li&gt;
+&lt;li&gt;I wear what I want!&lt;/li&gt;
+&lt;li&gt;Pro woman culture. I have never worked with so many women, it’s refreshing. I’m married and not sleazy; the gender balance makes the company more dynamic&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;As you can tell, I drank the Kool-Aid. I understand if you’re skeptical as I’m still on my honeymoon, but the longer-tenured folks share my sentiment. If you like what you read here, reach out. We’re hiring!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Maven Dependencies</title>
