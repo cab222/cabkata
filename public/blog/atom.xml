@@ -4,12 +4,62 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-01-22T13:16:25-05:00</updated>
+ <updated>2013-02-14T09:12:33-05:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
  </author>
 
+ 
+ <entry>
+   <title>Ditching Your LB</title>
+   <link href="YOUR_URL/ditchingyourlb.html"/>
+   <updated>2013-02-14T00:00:00-05:00</updated>
+   <id>BLOG_URL/ditchingyourlb</id>
+   <content type="html">&lt;p&gt;Yesterday I went to a tech talk given at &lt;a href=&quot;http://www.appnexus.com/&quot; title=&quot;AppNexus&quot;&gt;AppNexus&lt;/a&gt; by @pemerson that was focused on their experiences with Load Balancers (LBs). They went from relying heavily on LBs for routing their traffic to not relying on them at all. This talk was extremely relevant, as our team has had poor LB experiences. Specifically, our problems were caused by vendor reliability. Multiple misconfigurations have led to outages. Below I will summarize the take aways, but first I want to state my stance on owning your own LB infra.&lt;/p&gt;
+
+&lt;p&gt;This is a decision not to be taking lightly, devs tend to think they can roll their own better solution. While this may be true, especially for a limited set of functionality, it's important to balance that with the cost of maintenance, SLAs, and team skills. I would recommend dealing with vendors until you really can't anymore. Where I work, I think we have the profile to take this on. For me, the question is: 'is this the right timing?' My feeling is that if our vendor fails us again, the answer will be 'Now !!!'.&lt;/p&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+
+&lt;h1&gt;Disadvantages of an LB (I think we know these already)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Vendor cost&lt;/li&gt;
+&lt;li&gt;Provisioning time&lt;/li&gt;
+&lt;li&gt;Vendor reliability&lt;/li&gt;
+&lt;li&gt;AppNexus saw 5x lower performance than expected&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;br&gt;&lt;br&gt;
+
+
+&lt;h1&gt;How did they ditched the LB?&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;They rolled their own DNS solution in perl (sounds like open source  options are available)&lt;/li&gt;
+&lt;li&gt;The DNS acts as the LB, serving a pool of public IP addresses corresponding to the nodes in the cluster&lt;/li&gt;
+&lt;li&gt;To determine active nodes in the cluster, DNS polls nodes for health; Nodes provide a health endpoint.&lt;/li&gt;
+&lt;li&gt;Node failures in the cluster are resilient. Each logical node has a public ip address. That public ip is linked to multiple private IPs, corresponding to multiple physical nodes. One of these physicals is the active node, and the others are hot backups. This resiliency strategy is all managed with an open source technology called &lt;a href=&quot;http://www.keepalived.org/&quot; title=&quot;KeepAliveD&quot;&gt;KeepAliveD&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;br&gt;&lt;br&gt;
+
+
+&lt;h1&gt;The Tradeoffs&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SSL support requires more work (&lt;a href=&quot;https://www.stunnel.org/index.html&quot; title=&quot;Stunnel&quot;&gt;Stunnel&lt;/a&gt;/&lt;a href=&quot;http://nginx.com/&quot; title=&quot;NGINX&quot;&gt;NGINX&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Limited to 'Round Robin.'  Advanced LB features such 'Least Used CPU' are not available without more developer work.&lt;/li&gt;
+&lt;li&gt;You own it, no commercial support&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.keepalived.org/&quot; title=&quot;KeepAliveD&quot;&gt;KeepAliveD&lt;/a&gt; requires multicast. So if you want EC2 hosting, it requires a slightly different approach&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>On Scalability</title>
