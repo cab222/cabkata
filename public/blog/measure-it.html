@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Measure it on the JVM, Yammer Metrics + Graphite = Winning</title>
+   <meta name="author" content="Carlo Barbara" />
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/blog/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/blog/css/screen.css" type="text/css" media="screen, projection" />
+
+   <!-- Typekit -->
+   <script type="text/javascript" src="http://use.typekit.com/jpd0pfm.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+
+<!-- ClickTale Top part -->
+<script type="text/javascript">
+var WRInitTime=(new Date()).getTime();
+</script>
+<!-- ClickTale end of Top part -->
+
+<div class="site">
+  <div class="title">
+    <a href="/blog">CAB's Kata</a>
+  </div>
+  
+  <div id="post">
+<p>You're application/service should have an SLA, goal setting is important in all walks of life. A good example SLA is "My service will send a response within 300ms for 99.9% of requests for a peak client load of 500 requests per second." Amazon's Dynamo paper makes a good argument for defining SLAs that cover the entire bell curve, rather than the mean. Basically, you want all of your customer's to have a good experience, not some of them</p>
+
+<p>Now that you have you're SLA, how do you know if you're delivering on you're agreement? You have to measure, and track those measurements. You can not performance tune without measuring, other wise that's just called guessing. Now that you are convinced you need it. How do you do it?</p>
+
+<p>For metrics gathering on the JVM, I recommend you use Yammer Metrics. It's really simple to use, and it's well described <a href="http://metrics.codahale.com/getting-started/">here</a></p>
+
+<p>Why I like it:</p>
+
+<ul>
+<li>It has Histograms!!</li>
+<li>It has everything I ever needed: counters, gauges, histograms, and timers.</li>
+<li>It automatically integrates with jvisualvm using JMX</li>
+<li>It easy to ship your metrics to logs or graphite on a timer. For the latter there is basically a timer thread pumping metrics via UDP to the Graphite daemon</li>
+<li>If you use DropWizard, you can get metrics with a quick annotation of your endpoint: @Timed</li>
+</ul>
+
+
+<p>What I don't like:</p>
+
+<ul>
+<li>zip, zero, &amp; nada. It's frigg'n awesome!</li>
+</ul>
+
+
+<p>For tracking your metrics, I like Graphite. It's basically a time series db for numerical values with a view layer. More info <a href="http://graphite.wikidot.com/">here</a>. Graphite doesn't care who sends it data, so the metrics don't have to come from Yammer Metrics or the JVM. Basically anything that can open a socket can get data to into graphite, you just need to send the data in a structured format. This makes it very useful for tracking anything.</p>
+
+<p>Why I like it:</p>
+
+<ul>
+<li>You can track your historical data and create pretty pictures</li>
+<li>You can feed it from many sources</li>
+<li>It's scalable</li>
+<li>It's extremely useful</li>
+<li>You can create dashboards, and go nuts with D3/Cubism.</li>
+</ul>
+
+
+<p>What I don't like:</p>
+
+<ul>
+<li>It's not easy to get installed, especially if you want Python3. If you don't wan't to host it your self, it exists as a <a href="https://www.hostedgraphite.com/">service</a></li>
+<li>It's more infra to maintain &amp; support</li>
+<li>The web UX experience leaves a bit to be desired</li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>14 Feb 2013</span> &raquo; <a href="/blog/ditchingyourlb.html">Ditching Your LB</a></li>
+    
+      <li><span>22 Jan 2013</span> &raquo; <a href="/blog/scalability.html">On Scalability</a></li>
+    
+      <li><span>16 Nov 2012</span> &raquo; <a href="/blog/takingtheleap.html">Taking The Leap into Fashion...Renting the Runway</a></li>
+    
+  </ul>
+</div>
+  
+  <div class="footer">
+    <div class="contact">
+      <p>
+        Carlo Barbara<br />
+      </p>
+    </div>
+    <div class="contact">
+      <p>
+        <a href="http://github.com/cab222/">github.com/cab222</a><br />
+        <a href="http://twitter.com/carlobarbara/">twitter.com/carlobarbara</a><br />
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ClickTale Bottom part -->
+<div id="ClickTaleDiv" style="display: none;"></div>
+<script type="text/javascript">
+if(document.location.protocol!='https:')
+  document.write(unescape("%3Cscript%20src='http://s.clicktale.net/WRb.js'%20type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+if(typeof ClickTale=='function') ClickTale(206,0.3,"www03");
+</script>
+<!-- ClickTale end of Bottom part -->
+
+<!-- Google Analytics -->
+
+<!-- Google Analytics end -->
+
+</body>
+</html>
