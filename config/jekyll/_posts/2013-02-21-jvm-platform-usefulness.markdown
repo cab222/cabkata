@@ -10,7 +10,7 @@ Classloading
 =============
 Classloading is the process by which the JVM loads custom code and types. When you compile your *.java source, you end up with *.class files. These *.class file contain bytecode, which I'll talk more about in a bit. For the JVM to create a new instance of your custom type, the .class file needs to be loaded and linked. Loading happens when the JVM reads the byte stream from disk that lives in the .class file, and then creates an instance of the 'Class' type. The next step is Linking, which happens in 4 phases (Verification, Preparation, Resolution, and Initialization). Verification checks things such access controls, type validations, and bytecode stack checks. Once the class passes verification, it moves to preparation where memory is allocated as needed. During resolution, any other classes that are referenced are resolved. This too can lead to more class loading. Finally, the variables allocated in the resolution stage are initialized. Once the .class is linked and loaded, new instances can be created. These instances of type 'Class' provide access to methods, fields and constructors of the class. This functionality is relied upon for reflection.
 
-The JVM takes care of class loading with Classloaders. There are a few, and they run in sequence. Some are platform, and other can be custom written.  
+The JVM takes care of class loading with Classloaders. There are a few, and they run in sequence. Some are platform, and other can be custom written.
 
 * Primordial, Extension and Application are platform classloaders
 * EE and Framework classloaders are examples of custom classloaders
@@ -40,6 +40,68 @@ If you look at the .class containing the java code, this is what you would see. 
 	}
 </code>
 
+<pre><code>
+  Constant pool:
+const #1 = class  #2;   //  ByteCodeTutorial
+const #2 = Asciz  ByteCodeTutorial;
+const #3 = class  #4;   //  java/lang/Object
+const #4 = Asciz  java/lang/Object;
+const #5 = Asciz  instance;
+const #6 = Asciz  LByteCodeTutorial;;
+const #7 = Asciz  <clinit>;
+const #8 = Asciz  ()V;
+const #9 = Asciz  Code;
+const #10 = Field #1.#11;  //  ByteCodeTutorial.instance:LByteCodeTutorial;
+const #11 = NameAndType #5:#6;//  instance:LByteCodeTutorial;
+const #12 = Asciz LineNumberTable;
+const #13 = Asciz LocalVariableTable;
+const #14 = Asciz <init>;
+const #15 = Method   #3.#16;  //  java/lang/Object."<init>":()V
+const #16 = NameAndType #14:#8;//  "<init>":()V
+const #17 = Asciz this;
+const #18 = Asciz main;
+const #19 = Asciz ([Ljava/lang/String;)V;
+const #20 = Method   #1.#16;  //  ByteCodeTutorial."<init>":()V
+const #21 = Field #22.#24; //  java/lang/System.out:Ljava/io/PrintStream;
+const #22 = class #23;  //  java/lang/System
+const #23 = Asciz java/lang/System;
+const #24 = NameAndType #25:#26;//  out:Ljava/io/PrintStream;
+const #25 = Asciz out;
+const #26 = Asciz Ljava/io/PrintStream;;
+const #27 = class #28;  //  java/lang/StringBuilder
+const #28 = Asciz java/lang/StringBuilder;
+const #29 = Method   #27.#16; //  java/lang/StringBuilder."<init>":()V
+const #30 = Method   #27.#31; //  java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+const #31 = NameAndType #32:#33;//  append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+const #32 = Asciz append;
+const #33 = Asciz (Ljava/lang/Object;)Ljava/lang/StringBuilder;;
+const #34 = String   #35;  //   carlo
+const #35 = Asciz  carlo ;
+const #36 = Method   #27.#37; //  java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+const #37 = NameAndType #32:#38;//  append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+const #38 = Asciz (Ljava/lang/String;)Ljava/lang/StringBuilder;;
+const #39 = Method   #27.#40; //  java/lang/StringBuilder.toString:()Ljava/lang/String;
+const #40 = NameAndType #41:#42;//  toString:()Ljava/lang/String;
+const #41 = Asciz toString;
+const #42 = Asciz ()Ljava/lang/String;;
+const #43 = Method   #44.#46; //  java/io/PrintStream.println:(Ljava/lang/String;)V
+const #44 = class #45;  //  java/io/PrintStream
+const #45 = Asciz java/io/PrintStream;
+const #46 = NameAndType #47:#48;//  println:(Ljava/lang/String;)V
+const #47 = Asciz println;
+const #48 = Asciz (Ljava/lang/String;)V;
+const #49 = Method   #44.#50; //  java/io/PrintStream.println:(I)V
+const #50 = NameAndType #47:#51;//  println:(I)V
+const #51 = Asciz (I)V;
+const #52 = Asciz args;
+const #53 = Asciz [Ljava/lang/String;;
+const #54 = Asciz i;
+const #55 = Asciz I;
+const #56 = Asciz StackMapTable;
+const #57 = Asciz SourceFile;
+const #58 = Asciz ByteCodeTutorial.java;
+</code></pre>
+<br>
 <pre>
 <code>
 $javap -c ByteCodeTutorial
@@ -69,7 +131,7 @@ public static void main(java.lang.String[]);
    17:	invokespecial	#29; //Method java/lang/StringBuilder."<init>":()V
    20:	getstatic	#10; //Field instance:LByteCodeTutorial;
    23:	invokevirtual	#30; //Method java/lang/StringBuilder.append:(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-   26:	ldc	#34; //String  carlo 
+   26:	ldc	#34; //String  carlo
    28:	invokevirtual	#36; //Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
    31:	invokevirtual	#39; //Method java/lang/StringBuilder.toString:()Ljava/lang/String;
    34:	invokevirtual	#43; //Method java/io/PrintStream.println:(Ljava/lang/String;)V
@@ -90,6 +152,9 @@ public static void main(java.lang.String[]);
 
 I'm not going to walk thru this bytecode, but looking at this small code you can map it by looking up what opcodes do. I will highlight a few things:
 
-* You can see that string concatenation creates a new string builder. This is why you should always just create a StringBuilder if you're going to be doing a bunch of concats.
+* The constant table is self referential, each index is 2 bytes long
+* The numbers on the left column, under 'Code:' represents the byte number in that sequence. As an example, in the main method the 0 byte is a 'new' opcode. Bytes 1 and 2, are constant index point to entry #1 in the constant table.
+* Entry #1 in the constant table is a class, named ByteCodeTutorial. You can figure out the names by following the links
+* You can see that string concatenation creates a new StringBuilder. This is why you should always just create a StringBuilder if you're going to be doing a bunch of concats.
 * You can see there is no looping
 * You can also see the constant pool by running javap -verbose
