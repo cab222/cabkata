@@ -16,10 +16,10 @@
 	    <a class="brand" href="#">CAB's Kata</a>
 	    <ul class="nav">
 				<li class="divider-vertical"></li>
-        <li><%= link_to "Blog", '/blog' %></li>				
-				<li class="divider-vertical"></li>    
+        <li><%= link_to "Blog", 'http://cabkata.wordpress.com' %></li>
+				<li class="divider-vertical"></li>
         <li><%= link_to "MWOD UX 2.0", mwod_posts_path %></li>
-			</ul>	
+			</ul>
 
 		  <ul class="nav pull-right">
         <li><%= mail_to "cabkata@gmail.com", "Contact Us" %></li>
@@ -27,10 +27,10 @@
 	    	<% if user_signed_in? %>
 					<li>
 						<p class="navbar-text">Logged in as <%= current_user.email %>
-	
-						</p>		
+
+						</p>
 					</li>
-					
+
 					<li class="divider-vertical"></li>
 		    	<li><%= link_to 'Edit profile', edit_user_registration_path %></li>
 					<li class="divider-vertical"></li>
@@ -39,17 +39,17 @@
 		      <li><%= link_to "Sign up", new_user_registration_path %></li>
 					<li class="divider-vertical"></li>
 		      <li><%= link_to "Login", new_user_session_path %></li>
-				 
+
 				  <li>
-						<a href="/auth/twitter" class="auth_provider"> 
+						<a href="/auth/twitter" class="auth_provider">
 								<%= image_tag asset_path "twitter_32.png", :size => "32x32", :alt => "Twitter" %>Twitter
 						</a>
-					</li>	
-		    <% end %>		
+					</li>
+		    <% end %>
 	    </ul>
 	  </div>
 	</div>
-	
+
 	<div class="container">
 	  <% flash.each do |name, msg| %>
 	    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
@@ -57,8 +57,8 @@
 	      <%= msg  %>
 	    </div>
 	  <% end %>
-	</div>	
-		
+	</div>
+
 	<div class="container"><%= yield %></div>
 
 </body>
